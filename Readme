@@ -1,4 +1,5 @@
 This is topic 8
 Index 1.1 adds the geojson file to a map.
 Index 1.2 adds multiple layers to a mapbox and includes toggle function to turn the layers on and off.
-Index 1.3 add hillshading as a third layer
+Index 1.3 adds hillshading as a third layer
+Index 1.4 adds another layer that was once a raster layer, but then converted into a shapfile and then geojson to the map. 
