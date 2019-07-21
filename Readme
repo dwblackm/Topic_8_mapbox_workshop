@@ -1,2 +1,3 @@
 This is topic 8
 Index 1.1 adds the geojson file to a map.
+Index 1.2 adds multiple layers to a mapbox and includes toggle function to turn the layers on and off.
