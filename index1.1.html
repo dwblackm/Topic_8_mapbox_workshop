@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+    <html>
+
+      <head>
+
+          <meta charset='utf-8' />
+
+          <title>Mapbox GL Workshop</title>
+
+          <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+          <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+
+          <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+
+          <style>
+
+            body { margin:0; padding:0; }
+
+            #map { position:absolute; top:0; bottom:0; width:100%; }
+
+          </style>
+
+      </head>
+
+      <body>
+
+          <div id='map'></div>
+
+          <script>
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZHdibGFja20iLCJhIjoiY2p5OTJ0c2dzMGVhZjNjbWx0cm40NG52NSJ9.BzV4VXAqS2hNZpYr99FgBg'; // don't keep '<' & '>' when pasting token
+
+
+
+            var map = new mapboxgl.Map({
+
+            container: 'map', // container id
+
+            style: 'mapbox://styles/mapbox/streets-v10', //hosted style id;  
+
+            //others: 
+
+            //  'mapbox://styles/mapbox/light-v10'
+
+            //  'mapbox://styles/mapbox/streets-v10' 
+
+            //  'mapbox://styles/mapbox/dark-v10'
+
+            //  'mapbox://styles/mapbox/outdoors-v10'  
+
+            //  'mapbox://styles/mapbox/satellite-v10' 
+
+            //  'mapbox://styles/mapbox/traffic-night-v2'
+
+            center: [-78.6382, 35.7796], // change starting position to coordinates associated w/ your data.
+
+            zoom: 10 // starting zoom
+
+            });
+
+            map.on('load', function () {
+            //  # Add source of data (you will run into the least amount of problems when 
+            // adding source as online link --> View 'Raw' data file on Github --> Copy link)
+              map.addSource('lakes.geojson', {
+                  type: 'geojson',
+                  data: 'https://raw.githubusercontent.com/dwblackm/Topic_8_mapbox_workshop/master/lakes.geojson'
+              });
+              //  # -- Add source of data as map layer -- #
+              // # Continuing with the same example data, we can find out what the property value 
+              // of interests' range / interquartile ranges are (recommended to do in R considering 
+              // it should still be loaded in your environment)
+              // # we then take the data values (I've found 5 values tend to be sufficient for some 
+              // straightforward color mapping), and associate them with HEX color codes 
+              // (e.g., #fff = white) by adding "stops". Done like below:
+              map.addLayer({
+               'id': 'lakes.geojson',
+               "type": "fill",
+               "source": "lakes.geojson",
+               'layout': {},
+               'paint': {
+                   'fill-color': "#888",
+                   'fill-opacity': 1
+               }
+           });
+            });
+          </script>
+
+      </body>
+
+    </html>
